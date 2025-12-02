@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { skillCategories } from "@/data/portfolio";
 import { ANIMATION_DURATIONS, SCROLL_DELAYS } from "@/constants/ui";
+import { SkillItem } from "@/components/SkillItem";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const ICON_MAP = {
   Code2,
@@ -44,7 +46,7 @@ export function SkillsSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {skillCategories.map((category, index) => {
             const Icon = ICON_MAP[category.icon as keyof typeof ICON_MAP];
             if (!Icon) return null;
@@ -61,27 +63,29 @@ export function SkillsSection() {
                   delay: index * SCROLL_DELAYS.stagger,
                 }}
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#10B981]/10 dark:bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-[#10B981]" />
-                  </div>
-                  <div>
-                    <h3 className="text-gray-900 dark:text-white text-lg mb-3">
-                      {category.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill, i) => (
-                        <span
-                          key={i}
-                          className="text-sm text-gray-600 dark:text-gray-400"
-                        >
-                          {skill}
-                          {i < category.skills.length - 1 ? "," : ""}
-                        </span>
+                <Card className="border-gray-200 dark:border-gray-700 hover:border-[#10B981]/50 dark:hover:border-[#10B981]/50 transition-all hover:shadow-lg h-full">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-[#10B981]/10 dark:bg-[#10B981]/20 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-5 h-5 text-[#10B981]" />
+                      </div>
+                      <CardTitle className="text-base md:text-lg">
+                        {category.title}
+                      </CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-0">
+                      {category.skills.map((skill) => (
+                        <SkillItem
+                          key={skill.name}
+                          name={skill.name}
+                          level={skill.level}
+                        />
                       ))}
                     </div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             );
           })}

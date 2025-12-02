@@ -27,11 +27,16 @@ export interface Project {
   liveUrl: string;
 }
 
+export interface Skill {
+  name: string;
+  level: number; // 1-5 점수
+}
+
 export interface SkillCategory {
   id: string;
   title: string;
   icon: string;
-  skills: string[];
+  skills: Skill[];
 }
 
 export interface ContactInfo {
