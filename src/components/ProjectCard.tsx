@@ -1,7 +1,8 @@
 import { motion, useInView } from "motion/react";
-import { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { useRef, useState } from "react";
+import { ChevronRight, Github } from "lucide-react";
 import { ImageWithFallback } from "./common/ImageWithFallback";
+import { ProjectDetailModal } from "./ProjectDetailModal";
 import { Project } from "@/types";
 import { ANIMATION_DURATIONS } from "@/constants/ui";
 
@@ -18,11 +19,13 @@ export function ProjectCard({
   tags,
   githubUrl,
   liveUrl,
+  details,
   index,
 }: ProjectCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const isEven = index % 2 === 0;
+  const [showDetail, setShowDetail] = useState(false);
 
   return (
     <motion.div
@@ -98,16 +101,14 @@ export function ProjectCard({
                 <Github className="w-5 h-5" />
                 <span>View Code</span>
               </motion.a>
-              <motion.a
-                href={liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-[#10B981] transition-colors flex items-center gap-2 font-medium"
+              <motion.button
+                onClick={() => setShowDetail(true)}
+                className="text-gray-600 dark:text-gray-400 hover:text-[#10B981] transition-colors flex items-center gap-2 font-medium cursor-pointer"
                 whileHover={{ x: 3 }}
               >
-                <ExternalLink className="w-5 h-5" />
-                <span>Live Demo</span>
-              </motion.a>
+                <ChevronRight className="w-5 h-5" />
+                <span>View Details</span>
+              </motion.button>
             </motion.div>
           </div>
 
@@ -127,6 +128,23 @@ export function ProjectCard({
           </motion.div>
         </div>
       </div>
+
+      {/* Detail Modal */}
+      {details && (
+        <ProjectDetailModal
+          project={{
+            id,
+            title,
+            description,
+            image,
+            tags,
+            githubUrl,
+            details,
+          }}
+          isOpen={showDetail}
+          onClose={() => setShowDetail(false)}
+        />
+      )}
     </motion.div>
   );
 }

@@ -17,6 +17,25 @@ export interface HeroContent {
   };
 }
 
+export interface ProjectChallenge {
+  problem: string;
+  solution: string;
+}
+
+export interface ProjectScreenshot {
+  title: string;
+  description?: string;
+  placeholder: boolean;
+}
+
+export interface ProjectDetail {
+  challenges: ProjectChallenge[];
+  screenshots: ProjectScreenshot[];
+  fullDescription?: string;
+  developmentPeriod?: string;
+  teamSize?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -24,7 +43,8 @@ export interface Project {
   image: string;
   tags: string[];
   githubUrl: string;
-  liveUrl: string;
+  liveUrl?: string;
+  details?: ProjectDetail;
 }
 
 export interface Skill {
