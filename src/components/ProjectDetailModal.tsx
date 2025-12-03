@@ -108,10 +108,10 @@ export function ProjectDetailModal({
                   transition={{ delay: 0.25 + i * 0.05 }}
                   className="border-l-4 border-[#10B981] pl-4 py-3 bg-gradient-to-r from-[#10B981]/5 to-transparent dark:from-[#10B981]/10 rounded-r"
                 >
-                  <p className="font-medium text-gray-900 dark:text-white text-sm mb-2">
+                  <p className="font-medium text-gray-900 dark:text-white text-sm mb-2 whitespace-pre-wrap">
                     문제: {challenge.problem}
                   </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm whitespace-pre-wrap">
                     해결: {challenge.solution}
                   </p>
                 </motion.div>

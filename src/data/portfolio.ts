@@ -85,41 +85,38 @@ export const projects: Project[] = [
     id: "project-2",
     title: "LunarWorld",
     description:
-      "Unity AR Foundation 기반의 듀얼 레이어 슈팅 디펜스 게임으로, 지상 몬스터와 공중 드래곤을 동시에 처리합니다.",
+      "GPS 기반 맵에서 포탈 인카운터 시 AR 화면으로 전환되어 공중의 드래곤을 격추하는 포켓몬고 스타일의 AR 슈팅 게임입니다.",
     image:
       "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYW1lIGFyIGFuZHJvaWR8ZW58MXx8fHwxNzY0MDcyODU4&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     tags: ["Unity 2022", "C#", "AR Foundation", "Object Pooling", "Raycast"],
     githubUrl: "https://github.com",
     details: {
-      fullDescription: "Unity AR Foundation 기반의 듀얼 레이어 슈팅 디펜스 게임으로, 지상 몬스터와 공중 드래곤을 동시에 처리하는 이중 전투 시스템을 구현했습니다. ARPlaneManager로 실시간 평면 감지 및 포탈 배치를 하고, UnityEvent 기반 이벤트 시스템으로 지상/공중 전투를 분리 설계했습니다. 오브젝트 풀링과 레이어 마스크 기반 충돌 최적화로 모바일 환경에서 안정적인 성능을 확보하였습니다.",
-      developmentPeriod: "2024년 (약 3개월)",
-      teamSize: "팀 프로젝트 (5명)",
+      fullDescription: "MapBox 기반 GPS 네비게이션 맵에서 플레이어가 이동하다 포탈 위치에 도달하면, AR 카메라 기준 상공 15m에 포탈이 생성되고 여기서 드래곤 여러마리가 출현합니다. 플레이어는 마법 발사체를 통해 드래곤을 격추하여 승리하는 게임입니다.",
+      developmentPeriod: "2025.08 - 2025.09 (약 6주)",
+      teamSize: "팀 프로젝트 (6명)",
       challenges: [
         {
-          problem: "AR 환경에서 다층 객체 간의 정렬 순서 관리 복잡성",
-          solution: "ARCanvas 레이어 분리 및 SortingGroup 활용으로 렌더 순서 체계화",
+          problem: "얼음 마법 발사체 연속 발사 시 프레임 드롭",
+          solution: "Queue 기반 오브젝트 풀 구현 (15-25개) + SetActive 재사용으로 Instantiate/Destroy 제거",
         },
         {
-          problem: "모바일 디바이스에서의 성능 저하",
-          solution: "오브젝트 풀링 + 레이어 마스크 기반 물리 연산 최적화로 프레임 안정성 확보",
-        },
-        {
-          problem: "AR 평면 감지 불안정성",
-          solution: "ARPlaneManager 설정 최적화 및 폴백 메커니즘으로 감지 신뢰성 향상",
+          problem: "게임 메커닉 변경(지상 근접 → 공중 원거리)으로 관절 콜라이더 방식 한계 도달\n- 초기: 플레이어 주변 1-2m 근접 전투 → 관절별 정밀 피격 판정 필요\n- 변경: 상공 10-15m 포탈 시스템 → 드래곤 5마리 × 20+ 콜라이더 = 100+ 충돌 쿼리 → FPS 저하",
+          solution: "Raycast 기반 히트스캔으로 전환, 물리 엔진 부하 제거, 장거리 전투 환경에서 안정적 프레임 유지",
         },
       ],
       screenshots: [
-        { title: "AR 게임 로드화면", placeholder: true },
-        { title: "지상 전투", placeholder: true },
-        { title: "공중 전투", placeholder: true },
-        { title: "레이더 UI", placeholder: true },
-        { title: "스코어 보드", placeholder: true },
+        { title: "GPS 맵 화면", placeholder: true },
+        { title: "포탈 인카운터", placeholder: true },
+        { title: "AR 드래곤 전투", placeholder: true },
+        { title: "마법 발사체 이펙트", placeholder: true },
+        { title: "승리 화면", placeholder: true },
+        { title: "통계 뷰", placeholder: true },
       ],
     },
   },
   {
     id: "project-3",
-    title: "편리햄",
+    title: "편리햄!",
     description:
       "AI 기반 Mattermost 워크스페이스 관리 서비스로, 산재된 메시지와 파일에서 필요한 정보를 빠르게 찾을 수 있습니다.",
     image:
@@ -128,8 +125,8 @@ export const projects: Project[] = [
     githubUrl: "https://lab.ssafy.com/s13-final/S13P31A105",
     details: {
       fullDescription: "AI 기반 Mattermost 워크스페이스 관리 서비스로, 산재된 메시지와 파일에서 필요한 정보를 빠르게 찾을 수 있도록 합니다. React와 TypeScript로 대시보드, 달력, 검색 페이지를 구현했으며, SSE(Server-Sent Events)로 서버에서 푸시하는 메시지, 알림, 구직 정보를 실시간으로 수신합니다. Zustand로 인증 정보와 SSE 상태를 전역 관리하며, 토큰 갱신 시 자동으로 SSE 연결을 재수립하여 안정적인 실시간 통신을 제공합니다.",
-      developmentPeriod: "2024.10 - 2024.11 (약 6주)",
-      teamSize: "팀 프로젝트 (FE 3명, BE 3명)",
+      developmentPeriod: "2025.10 - 2025.11 (약 6주)",
+      teamSize: "팀 프로젝트 (FE 2명, BE 3명)",
       challenges: [
         {
           problem: "SSE 연결 중 토큰 갱신 시 인증 실패",
@@ -157,16 +154,6 @@ export const projects: Project[] = [
         { title: "마이페이지", placeholder: true },
       ],
     },
-  },
-  {
-    id: "project-4",
-    title: "모바일 앱 쇼케이스",
-    description:
-      "프로그레시브 웹 앱 기능을 갖춘 모던 모바일 우선 웹 애플리케이션입니다.",
-    image:
-      "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ258ZW58MXx8fHwxNzY0MDc3MzYyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    tags: ["React", "PWA", "Motion", "Service Workers"],
-    githubUrl: "https://github.com",
   },
 ];
 
