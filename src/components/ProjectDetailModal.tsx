@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogClose,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
@@ -28,6 +29,9 @@ export function ProjectDetailModal({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
+        <DialogDescription className="sr-only">
+          {project.title} 프로젝트의 상세 정보
+        </DialogDescription>
         <DialogHeader className="flex flex-row items-start justify-between mb-6 space-y-0">
           <DialogTitle className="text-2xl md:text-3xl font-bold">
             {project.title}
