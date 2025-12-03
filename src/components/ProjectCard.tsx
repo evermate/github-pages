@@ -139,6 +139,7 @@ export function ProjectCard({
             image,
             tags,
             githubUrl,
+            liveUrl,
             details,
           }}
           isOpen={showDetail}

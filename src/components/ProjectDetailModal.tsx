@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Github } from "lucide-react";
+import { Github, X } from "lucide-react";
 import { Project } from "@/types";
 import {
   Dialog,
@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogClose,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface ProjectDetailModalProps {
   project: Project;
@@ -26,10 +27,21 @@ export function ProjectDetailModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-3xl">{project.title}</DialogTitle>
-          <DialogClose />
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
+        <DialogHeader className="flex flex-row items-start justify-between mb-6 space-y-0">
+          <DialogTitle className="text-2xl md:text-3xl font-bold">
+            {project.title}
+          </DialogTitle>
+          <DialogClose asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 flex-shrink-0"
+            >
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </Button>
+          </DialogClose>
         </DialogHeader>
 
         <div className="space-y-8 py-4">
@@ -140,17 +152,21 @@ export function ProjectDetailModal({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="pt-4 border-t border-gray-200 dark:border-gray-700"
+            className="pt-4 border-t border-gray-200 dark:border-gray-700 flex gap-3"
           >
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#10B981] text-white rounded-lg font-medium hover:bg-[#059669] transition-colors"
+            <Button
+              asChild
+              className="bg-[#10B981] hover:bg-[#059669] text-white gap-2"
             >
-              <Github className="w-5 h-5" />
-              <span>View Code on GitHub</span>
-            </a>
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="w-4 h-4" />
+                <span>View Code</span>
+              </a>
+            </Button>
           </motion.div>
         </div>
       </DialogContent>
