@@ -7,29 +7,29 @@ export const config: PortfolioConfig = {
 };
 
 export const heroContent: HeroContent = {
-  name: "김민수",
+  name: "조영우",
   title: "Frontend Developer",
   description:
-    "모던 기술을 활용하여 아름답고 반응형 웹 경험을 만듭니다. React, TypeScript 및 직관적인 사용자 인터페이스 제작을 전문으로 합니다.",
+    "모던 기술을 활용하여 아름다운 반응형 웹 경험을 만듭니다. React, TypeScript 및 직관적인 사용자 인터페이스 제작을 전문으로 합니다.",
   profileImage:
     "https://images.unsplash.com/photo-1737575655055-e3967cbefd03?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBkZXZlbG9wZXIlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NjQwNzI3OTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   socialLinks: [
     {
       id: "github",
       label: "GitHub",
-      url: "https://github.com",
+      url: "https://github.com/evermate",
       icon: "Github",
     },
-    {
-      id: "linkedin",
-      label: "LinkedIn",
-      url: "https://linkedin.com",
-      icon: "Linkedin",
-    },
+    // {
+    //   id: "linkedin",
+    //   label: "LinkedIn",
+    //   url: "https://linkedin.com",
+    //   icon: "Linkedin",
+    // },
     {
       id: "email",
       label: "Email",
-      url: "mailto:alex@example.com",
+      url: "mailto:duddn.jo@gmail.com",
       icon: "Mail",
     },
   ],
